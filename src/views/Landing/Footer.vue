@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const services = [
   'specialist-giass-aluminium',
   'repair-roof-leaking',
