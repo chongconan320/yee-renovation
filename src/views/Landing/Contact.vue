@@ -58,7 +58,7 @@ import { ThemeButton } from '@/components/Common/Buttons'
           />
         </v-col>
       </v-row>
-      <theme-button class="button"> send </theme-button>
+      <theme-button class="button"> {{ $t('landing.contact-send') }} </theme-button>
     </v-form>
   </div>
 </template>

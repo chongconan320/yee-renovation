@@ -1,4 +1,24 @@
 export default {
+  common: {
+    'specialist-giass-aluminium': 'specialist in glass / aluminium',
+    'repair-roof-leaking': 'repair roof leaking',
+    'waterproofing-work': 'waterproofing work',
+    'renovation-rebuild-for-houses': 'renovation / rebuild for houses',
+    'renovation-for-commercial': 'Renovation for Commercial',
+    'ceiling-partition-work': 'Ceiling / Partition Work',
+    'customize-furniture': 'Customize Furniture',
+    'ceramic-porcelain-tiles-work': 'Ceramic Porcelain Tiles Work',
+    'electric-work': 'Electric Work',
+    plumbing: 'Plumbing',
+    painting: 'Painting',
+    'service-repair': 'Service / Repair',
+    'maintenance-work-commercial': 'Maintenance Work Commercial',
+    'steel-stainless-steel-work': 'Steel / Stainless Steel Work',
+    'office-hours': 'Office Hours',
+    'mon-sat': 'MON - SAT',
+    'mon-sun': 'SUN - CLOSED',
+    copyright: 'ALL RIGHT RESERVED'
+  },
   landing: {
     slogan: 'Not build your house but dream',
     'about-us-title': 'About us',
@@ -25,6 +45,10 @@ export default {
     'contact-email': 'email',
     'contact-mobile': 'mobile number',
     'contact-name': 'name',
-    'contact-message': 'message'
+    'contact-message': 'message',
+    'contact-send': 'send',
+    'footer-title': 'YEE DESIGN & RENOVATION',
+    'footer-description':
+      'We believe that a house should be more than just a structure; it should be a place where dreams come to life. We are passionate about creating homes that you will truly love, cherish, and feel proud to call your own.'
   }
 }

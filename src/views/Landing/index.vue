@@ -5,6 +5,7 @@ import OurWorks from './OurWorks.vue'
 import OurServices from './OurServices.vue'
 import OurLocation from './OurLocation.vue'
 import Contact from './Contact.vue'
+import Footer from './Footer.vue'
 </script>
 <template>
   <HeroSection />
@@ -23,13 +24,17 @@ import Contact from './Contact.vue'
   <section class="contact">
     <Contact />
   </section>
+  <section class="footer">
+    <Footer />
+  </section>
 </template>
 
 <style scoped lang="scss">
 section {
   margin-top: 3.5em;
 }
-section:nth-child(6) {
+section:nth-last-child(2),
+section:nth-last-child(1) {
   margin-top: 0;
 }
 .about-us {

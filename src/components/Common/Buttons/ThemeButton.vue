@@ -17,7 +17,6 @@
 }
 .button__text {
   color: $primary;
-  font-size: 1.35rem;
-  font-weight: bold;
+  font-size: 1.25rem;
 }
 </style>
