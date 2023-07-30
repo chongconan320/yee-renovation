@@ -1,9 +1,12 @@
 <template>
   <div class="about-us">
-    <h1 class="about-us__title">
-      {{ $t('landing.about-us-title') }}
-    </h1>
-    <p class="about-us__description">
+    <div class="about-us__title">
+      <h1 data-aos="slide-right" data-aos-offset="0">
+        {{ $t('landing.about-us-title') }}
+      </h1>
+    </div>
+
+    <p class="about-us__description" data-aos="slide-up">
       {{ $t('landing.about-us-description') }}
     </p>
   </div>
@@ -17,7 +20,7 @@
 .about-us__title {
   background: $primary;
   color: $white;
-  padding: 0.75em $horizontal_padding;
+  padding: 1.2em $horizontal_padding;
   margin-bottom: 1em;
   text-transform: uppercase;
 }

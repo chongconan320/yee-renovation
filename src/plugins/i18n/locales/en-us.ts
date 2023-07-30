@@ -21,6 +21,9 @@ export default {
   },
   landing: {
     slogan: 'Not build your house but dream',
+    'we-build': 'We build',
+    dream: 'dream',
+
     'about-us-title': 'About us',
     'about-us-description':
       'Welcome to Yee Design & Renovation, your comprehensive renovation solution provider. With expertise in glass, aluminum, roof repairs, waterproofing, commercial renovations, and more, we offer a wide range of services to meet your needs. Our skilled team is committed to excellence, attention to detail, and customer satisfaction. Trust us to transform your space, address leaks, ensure water protection, and deliver exceptional results. Contact us today for a consultation and experience the difference of working with Yee Design & Renovation.',

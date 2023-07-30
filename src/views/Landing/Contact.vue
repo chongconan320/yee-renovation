@@ -3,12 +3,15 @@ import { ThemeButton } from '@/components/Common/Buttons'
 </script>
 <template>
   <div class="contact">
-    <h4 class="contact__title">{{ $t('landing.contact-title') }}</h4>
-    <p class="contact__description">{{ $t('landing.contact-description') }}</p>
+    <h4 class="contact__title" data-aos="slide-right">{{ $t('landing.contact-title') }}</h4>
+    <p class="contact__description" data-aos="slide-right">
+      {{ $t('landing.contact-description') }}
+    </p>
     <v-form class="contact__form">
       <v-row>
         <v-col>
           <v-text-field
+            color="primary"
             density="compact"
             bg-color="white"
             name="email"
@@ -22,6 +25,7 @@ import { ThemeButton } from '@/components/Common/Buttons'
       <v-row>
         <v-col>
           <v-text-field
+            color="primary"
             density="compact"
             bg-color="white"
             name="name"
@@ -35,6 +39,7 @@ import { ThemeButton } from '@/components/Common/Buttons'
       <v-row>
         <v-col>
           <v-text-field
+            color="primary"
             density="compact"
             bg-color="white"
             name="mobile"
@@ -48,6 +53,7 @@ import { ThemeButton } from '@/components/Common/Buttons'
       <v-row>
         <v-col>
           <v-textarea
+            color="primary"
             density="compact"
             bg-color="white"
             name="message"
@@ -85,6 +91,9 @@ import { ThemeButton } from '@/components/Common/Buttons'
 .input {
   ::v-deep(.v-label) {
     text-transform: capitalize;
+  }
+  ::v-deep(.v-text-field--outlined) {
+    border-color: rgba(192, 0, 250, 0.986);
   }
   ::v-deep(input) {
     &::-webkit-input-placeholder {

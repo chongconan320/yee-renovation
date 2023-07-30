@@ -31,7 +31,7 @@ import Footer from './Footer.vue'
 
 <style scoped lang="scss">
 section {
-  margin-top: 3.5em;
+  margin-top: 5em;
 }
 section:nth-last-child(2),
 section:nth-last-child(1) {

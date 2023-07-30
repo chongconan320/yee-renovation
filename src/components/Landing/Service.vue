@@ -12,10 +12,10 @@ defineProps({
 <template>
   <div class="service">
     <VRow>
-      <VCol cols="4" class="service__image">
-        <v-img :src="src" :width="size" />
+      <VCol cols="4" class="service__image" data-aos="slide-right" duration="800">
+        <v-img :src="src" :width="size" eager />
       </VCol>
-      <VCol class="service__description">
+      <VCol class="service__description" data-aos="slide-left">
         <p>{{ description }}</p>
       </VCol>
     </VRow>

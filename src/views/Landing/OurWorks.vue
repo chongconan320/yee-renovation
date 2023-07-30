@@ -6,6 +6,8 @@ import GALLERY_3 from '@/assets/images/gallery_3.jpg'
 import GALLERY_4 from '@/assets/images/gallery_4.jpg'
 import GALLERY_5 from '@/assets/images/gallery_5.jpg'
 import GALLERY_6 from '@/assets/images/gallery_6.jpg'
+
+const duration = 500
 </script>
 <template>
   <div class="our-works">
@@ -16,14 +18,44 @@ import GALLERY_6 from '@/assets/images/gallery_6.jpg'
     </Title>
     <VRow class="our-works__gallery-container">
       <VCol cols="6" class="our-works__gallery-column">
-        <VImg :src="GALLERY_1" class="our-works__picture our-works__picture--left" />
-        <VImg :src="GALLERY_2" class="our-works__picture our-works__picture--left" />
-        <VImg :src="GALLERY_3" class="our-works__picture our-works__picture--left" />
+        <VImg
+          :src="GALLERY_1"
+          class="our-works__picture our-works__picture--left"
+          data-aos="slide-right"
+          :data-aos-duration="duration"
+        />
+        <VImg
+          :src="GALLERY_2"
+          class="our-works__picture our-works__picture--left"
+          data-aos="slide-right"
+          :data-aos-duration="duration"
+        />
+        <VImg
+          :src="GALLERY_3"
+          class="our-works__picture our-works__picture--left"
+          data-aos="slide-right"
+          :data-aos-duration="duration"
+        />
       </VCol>
       <VCol cols="6" class="our-works__gallery-column">
-        <VImg :src="GALLERY_4" class="our-works__picture our-work__picture--right" />
-        <VImg :src="GALLERY_5" class="our-works__picture our-work__picture--right" />
-        <VImg :src="GALLERY_6" class="our-works__picture our-work__picture--right" />
+        <VImg
+          :src="GALLERY_4"
+          class="our-works__picture our-work__picture--right"
+          data-aos="slide-left"
+          :data-aos-duration="duration"
+        />
+        <VImg
+          :src="GALLERY_5"
+          class="our-works__picture our-work__picture--right"
+          data-aos="slide-left"
+          :data-aos-duration="duration"
+        />
+        <VImg
+          :src="GALLERY_6"
+          class="our-works__picture our-work__picture--right"
+          data-aos="slide-left"
+          :data-aos-duration="duration"
+        />
       </VCol>
     </VRow>
   </div>
@@ -49,12 +81,10 @@ import GALLERY_6 from '@/assets/images/gallery_6.jpg'
   flex: 0.2;
 }
 .our-works__picture--left:nth-child(2) {
-  transform: scaleX(-1);
   margin: 1em 0;
   flex: 0.35;
 }
 .our-works__picture--left:last-child {
-  transform: scaleX(-1);
   flex: 0.45;
 }
 
@@ -63,7 +93,6 @@ import GALLERY_6 from '@/assets/images/gallery_6.jpg'
 }
 .our-work__picture--right:nth-child(2) {
   flex: 0.35;
-  transform: scaleX(1);
   margin: 1em 0;
 }
 .our-work__picture--right:last-child {

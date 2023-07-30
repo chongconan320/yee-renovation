@@ -1,6 +1,16 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
 import logo from '@/assets/svgs/logo.svg'
+import { onMounted } from 'vue'
+import AOS from 'aos'
+
+onMounted(() => {
+  AOS.init({
+    once: true,
+    easing: 'ease-in-out',
+    duration: 500
+  })
+})
 </script>
 
 <template>
@@ -14,7 +24,6 @@ import logo from '@/assets/svgs/logo.svg'
           <v-icon icon="mdi-menu" color="primary" />
         </template>
       </v-app-bar>
-
       <v-main> <router-view /> </v-main>
     </v-layout>
   </v-app>

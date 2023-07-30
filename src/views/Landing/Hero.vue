@@ -1,30 +1,46 @@
 <script setup lang="ts">
 import LANDING from '@/assets/images/landing.jpg'
+import { ThemeButton } from '@/components/Common/Buttons'
 </script>
 <template>
-  <VRow>
-    <VCol cols="6">
-      <span class="landing__slogan">{{ $t('landing.slogan') }}</span>
-    </VCol>
-    <VCol cols="6">
-      <v-img :src="LANDING" class="landing__image" />
-    </VCol>
-  </VRow>
+  <div class="hero">
+    <VRow>
+      <VCol cols="6" data-aos="slide-right">
+        <span class="landing__slogan">{{ $t('landing.slogan') }}</span>
+      </VCol>
+      <VCol cols="6" data-aos="slide-left">
+        <v-img :src="LANDING" class="landing__image" />
+      </VCol>
+    </VRow>
+  </div>
 </template>
 
 <style scoped lang="scss">
 @import '@/assets/variables';
-
+.hero {
+}
 .landing {
   overflow: hidden;
 }
+.landing__emphasis {
+  font-size: 2rem;
+  font-weight: 200;
+  padding: $horizontal-padding;
+}
 .landing__slogan {
   display: block;
-  font-size: 2.6rem;
-  font-weight: 900;
+  font-size: 2.5rem;
+  font-weight: 700;
   line-height: 1.25em;
   padding-left: $horizontal-padding;
-  margin-top: 2em;
+  margin-top: 2.5em;
+}
+.landing__quote {
+  padding: 0 $horizontal_padding;
+  ::v-deep(.button) {
+    width: 100%;
+    height: 3rem;
+  }
 }
 .landing__image {
   position: relative;

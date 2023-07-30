@@ -6,8 +6,8 @@ defineProps({
 
 <template>
   <div class="title">
-    <h1 class="title__name">{{ title }}</h1>
-    <span class="title__subtitle">
+    <h1 class="title__name" data-aos="fade-in">{{ title }}</h1>
+    <span class="title__subtitle" data-aos="fade-in">
       <slot name="subtitle"></slot>
     </span>
   </div>
