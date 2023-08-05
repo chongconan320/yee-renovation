@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { useDisplay } from 'vuetify'
+
 defineProps({
   src: String,
   description: String,
@@ -7,15 +9,24 @@ defineProps({
     default: 70
   }
 })
+const display = useDisplay()
 </script>
 
 <template>
   <div class="service">
     <VRow>
-      <VCol cols="4" class="service__image" data-aos="slide-right" duration="800">
+      <VCol
+        cols="4"
+        class="service__image"
+        :data-aos="display.mdAndUp.value ? 'slide-up' : 'slide-right'"
+        duration="800"
+      >
         <v-img :src="src" :width="size" eager />
       </VCol>
-      <VCol class="service__description" data-aos="slide-left">
+      <VCol
+        class="service__description"
+        :data-aos="display.mdAndUp.value ? 'slide-up' : 'slide-left'"
+      >
         <p>{{ description }}</p>
       </VCol>
     </VRow>
@@ -41,5 +52,12 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (min-width: 764px) {
+  .our-services__services {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 }
 </style>

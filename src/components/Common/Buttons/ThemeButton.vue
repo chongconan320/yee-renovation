@@ -14,9 +14,12 @@
   border-radius: 0;
   border-width: 3px;
   height: 40px;
-}
-.button__text {
-  color: $primary;
-  font-size: 1.25rem;
+
+  &:hover {
+    background-color: $white;
+  }
+  &:hover .button__text {
+    color: $primary;
+  }
 }
 </style>

@@ -43,4 +43,9 @@ const position = {
 .google-map {
   margin-top: 2em;
 }
+@media (min-width: $max-width) {
+  .our-location__wrapper {
+    margin-bottom: 2em;
+  }
+}
 </style>

@@ -63,6 +63,11 @@ const duration = 500
 
 <style scoped lang="scss">
 @import '@/assets/variables';
+
+.our-works {
+  margin: auto;
+  max-width: $max-width;
+}
 .our-works__gallery-container {
   margin-top: 1em;
   padding: 0 $horizontal_padding;

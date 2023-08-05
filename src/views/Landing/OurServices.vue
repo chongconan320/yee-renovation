@@ -28,6 +28,8 @@ import { ThemeButton } from '@/components/Common/Buttons'
 <style scoped lang="scss">
 @import '@/assets/variables';
 .our-services {
+  margin: auto;
+  max-width: $max-width;
   padding: 0 $horizontal_padding;
 }
 .our-services__services {
@@ -40,5 +42,15 @@ import { ThemeButton } from '@/components/Common/Buttons'
 .button {
   text-align: center;
   margin-top: 1.5em;
+}
+
+@media (min-width: 764px) {
+  .our-services__services {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+  .button {
+    margin-top: 2.5em;
+  }
 }
 </style>

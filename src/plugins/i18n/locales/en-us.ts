@@ -20,7 +20,7 @@ export default {
     copyright: 'ALL RIGHT RESERVED'
   },
   landing: {
-    slogan: 'Not build your house but dream',
+    slogan: 'Build you dream house',
     'we-build': 'We build',
     dream: 'dream',
 

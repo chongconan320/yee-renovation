@@ -1,55 +1,78 @@
 <script setup lang="ts">
 import LANDING from '@/assets/images/landing.jpg'
 import { ThemeButton } from '@/components/Common/Buttons'
+import { useDisplay } from 'vuetify'
+
+const display = useDisplay()
 </script>
 <template>
   <div class="hero">
-    <VRow>
-      <VCol cols="6" data-aos="slide-right">
-        <span class="landing__slogan">{{ $t('landing.slogan') }}</span>
-      </VCol>
-      <VCol cols="6" data-aos="slide-left">
-        <v-img :src="LANDING" class="landing__image" />
-      </VCol>
-    </VRow>
+    <div class="hero__overlay">
+      <div class="overlay__content" :data-aos="display.lgAndUp ? 'fade-in' : 'slide-right'">
+        <h1 class="landing__slogan">
+          Build your <span class="landing__slogan--emphasis">dream </span>house
+        </h1>
+        <p class="landing__description">Get your personalied quote now</p>
+        <div class="landing__button">
+          <theme-button class="landing__button"> Get your quotes </theme-button>
+        </div>
+      </div>
+    </div>
+    <v-img :src="LANDING" class="landing__image" />
   </div>
 </template>
 
 <style scoped lang="scss">
 @import '@/assets/variables';
 .hero {
+  position: relative;
+  color: $white;
 }
-.landing {
-  overflow: hidden;
-}
-.landing__emphasis {
-  font-size: 2rem;
-  font-weight: 200;
-  padding: $horizontal-padding;
-}
+
 .landing__slogan {
-  display: block;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1.25em;
   padding-left: $horizontal-padding;
-  margin-top: 2.5em;
 }
-.landing__quote {
-  padding: 0 $horizontal_padding;
-  ::v-deep(.button) {
-    width: 100%;
-    height: 3rem;
-  }
+.landing__slogan--emphasis {
+  color: $primary;
+  text-transform: uppercase;
 }
+.landing__description {
+  font-size: 1.25rem;
+  line-height: 1.25em;
+  padding-left: $horizontal-padding;
+  margin-top: 1em;
+}
+
+.hero__overlay {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background: #000000c9;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+  justify-content: center;
+  align-items: center;
+}
+
 .landing__image {
   position: relative;
-  width: 100%;
-  height: 45vh;
-  border-bottom-left-radius: 120px;
+  width: 100vw;
+  height: 100vh;
   ::v-deep(img) {
     object-fit: cover;
-    object-position: 32% 0;
+  }
+}
+.landing__button {
+  margin-top: 1em;
+  padding: 0 $horizontal_padding;
+  & button {
+    ::v-deep(.button__text) {
+      color: $white;
+    }
   }
 }
 </style>

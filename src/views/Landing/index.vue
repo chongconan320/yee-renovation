@@ -9,9 +9,7 @@ import Footer from './Footer.vue'
 </script>
 <template>
   <HeroSection />
-  <section class="about-us">
-    <AboutUs />
-  </section>
+
   <section class="our-works">
     <OurWorks />
   </section>
@@ -31,13 +29,10 @@ import Footer from './Footer.vue'
 
 <style scoped lang="scss">
 section {
-  margin-top: 5em;
+  margin-top: 3em;
 }
-section:nth-last-child(2),
-section:nth-last-child(1) {
+section:nth-last-child(1),
+section:nth-last-child(2) {
   margin-top: 0;
-}
-.about-us {
-  margin-top: 6em;
 }
 </style>

@@ -1,16 +1,19 @@
 <script setup lang="ts">
 import { RouterView, useRoute, useRouter } from 'vue-router'
 import logo from '@/assets/svgs/logo.svg'
+import WHATSAPPS from '@/assets/svgs/whatsapps.svg'
+
 import { onMounted } from 'vue'
 import AOS from 'aos'
 import { VApp } from 'vuetify/components'
 import { ref, watch } from 'vue'
-import { nextTick } from 'vue'
+import { useDisplay } from 'vuetify'
 
-const isDrawerExpanded = ref(true)
+const isDrawerExpanded = ref(false)
 const onToggleDrawer = () => {
   isDrawerExpanded.value = !isDrawerExpanded.value
 }
+const display = useDisplay()
 const scrollTop = ref(0)
 const navigations = [
   {
@@ -30,6 +33,11 @@ const navigations = [
     text: 'Contact Us'
   }
 ]
+const WHATSAPPS_LINK = `https://wa.me/60143327987?${new URLSearchParams({
+  text: "Hi! I am interested to your service. Let's talk."
+})}`
+
+const appBarRef = ref<HTMLDivElement>()
 
 const route = useRoute()
 
@@ -38,6 +46,13 @@ onMounted(() => {
     once: true,
     easing: 'ease-in-out',
     duration: 500
+  })
+  document.addEventListener('scroll', () => {
+    if (window.scrollY > window.innerHeight - 60) {
+      appBarRef.value?.classList.add('app-bar--dark')
+      return
+    }
+    appBarRef.value!.className = 'app-bar'
   })
 })
 watch(isDrawerExpanded, () => {
@@ -51,12 +66,21 @@ watch(isDrawerExpanded, () => {
   }
   document.body.style.overflow = 'visible'
   document.body.style.height = 'auto'
-  window.scrollTo({ top: scrollTop.value })
 })
 </script>
 
 <template>
   <v-app>
+    <a
+      target="_blank"
+      class="whatsapps"
+      aria-label="Chat on WhatsApp"
+      alt="Chat on WhatsApps"
+      :href="WHATSAPPS_LINK"
+    >
+      <v-img :src="WHATSAPPS" />
+    </a>
+
     <v-layout>
       <v-navigation-drawer
         v-model="isDrawerExpanded"
@@ -65,7 +89,9 @@ watch(isDrawerExpanded, () => {
         color="dark"
         class="drawer"
       >
-        <v-img :src="logo" class="logo" />
+        <div class="logo-wrapper">
+          <img :src="logo" class="logo" />
+        </div>
 
         <v-list>
           <v-list-item
@@ -77,17 +103,20 @@ watch(isDrawerExpanded, () => {
           </v-list-item>
         </v-list>
       </v-navigation-drawer>
-      <v-app-bar color="dark" class="app-bar">
-        <template #image>
-          <v-img :src="logo" />
-        </template>
-        <template #append>
-          <div @click="onToggleDrawer" style="cursor: pointer">
-            <v-icon icon="mdi-menu" color="primary" />
-          </div>
-        </template>
-      </v-app-bar>
-      <v-main> <router-view /> </v-main>
+      <div class="app-bar" ref="appBarRef">
+        <img :src="logo" class="logo" />
+        <div class="navigations" v-if="display.mdAndUp.value">
+          <a target="__blank" v-for="navigation in navigations" :key="navigation.route">
+            {{ navigation.text }}
+          </a>
+        </div>
+        <div @click="onToggleDrawer" style="cursor: pointer" v-else>
+          <v-icon icon="mdi-menu" color="white" />
+        </div>
+      </div>
+      <v-main>
+        <router-view />
+      </v-main>
     </v-layout>
   </v-app>
 </template>
@@ -95,28 +124,84 @@ watch(isDrawerExpanded, () => {
 <style lang="scss">
 @import '@/assets/variables';
 
+.logo {
+  height: 30px;
+}
+
 .app-bar {
-  position: fixed !important;
-  & .v-toolbar__image {
-    margin-left: 0.75em;
-    width: 108px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  padding: 0 $horizontal_padding;
+  top: 0;
+  width: 100%;
+  height: 64px;
+  z-index: 100;
+  transition: background-color 300ms ease-in-out;
+
+  & .navigations {
+    float: right;
+    & a {
+      position: relative;
+      display: inline-block;
+      margin-right: 3.5em;
+      text-transform: uppercase;
+      color: white;
+      text-decoration: none;
+    }
+    & a::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 0%;
+      height: 3px;
+      background-color: $primary;
+      margin-right: 2em;
+      transition: width 200ms ease-in-out;
+    }
+    & a:hover::after {
+      width: 100%;
+    }
+    & a:last-child {
+      margin-right: 0;
+    }
   }
 }
 
-.logo {
-  margin: 16px;
-  width: 40%;
+.app-bar--dark {
+  background-color: $dark;
+  -webkit-box-shadow: -9px 18px 26px -14px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -9px 18px 26px -14px rgba(0, 0, 0, 0.75);
+  box-shadow: -9px 18px 26px -14px rgba(0, 0, 0, 0.75);
 }
+
 .drawer {
   position: fixed !important;
 }
 .list-item {
   font-size: 1.5rem;
-  padding: 1em 1rem !important;
+  padding: 0.75em $horizontal_padding !important;
   text-transform: uppercase;
   cursor: pointer;
 }
 .list-item--active {
   background-color: $primary;
+}
+.logo-wrapper {
+  height: 64px;
+  padding: $horizontal_padding;
+}
+.whatsapps {
+  background-color: #25d366;
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  bottom: 1.25em;
+  right: 1.25em;
+  z-index: 999;
 }
 </style>
