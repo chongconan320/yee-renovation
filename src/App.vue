@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { RouterView, useRoute, useRouter } from 'vue-router'
+import { RouterView, useRoute, useRouter, RouterLink } from 'vue-router'
 import logo from '@/assets/svgs/logo.svg'
 import WHATSAPPS from '@/assets/svgs/whatsapps.svg'
-
 import { onMounted } from 'vue'
 import AOS from 'aos'
 import { VApp } from 'vuetify/components'
@@ -27,10 +26,6 @@ const navigations = [
   {
     route: '/about-us',
     text: 'About us'
-  },
-  {
-    route: '/contact-us',
-    text: 'Contact Us'
   }
 ]
 const WHATSAPPS_LINK = `https://wa.me/60143327987?${new URLSearchParams({
@@ -106,9 +101,15 @@ watch(isDrawerExpanded, () => {
       <div class="app-bar" ref="appBarRef">
         <img :src="logo" class="logo" />
         <div class="navigations" v-if="display.mdAndUp.value">
-          <a target="__blank" v-for="navigation in navigations" :key="navigation.route">
+          <router-link
+            active-class="active"
+            v-for="navigation in navigations"
+            :key="navigation.route"
+            :to="navigation.route"
+          >
             {{ navigation.text }}
-          </a>
+          </router-link>
+          <a target="_blank" :href="WHATSAPPS_LINK"> CONTACT US </a>
         </div>
         <div @click="onToggleDrawer" style="cursor: pointer" v-else>
           <v-icon icon="mdi-menu" color="white" />
@@ -141,6 +142,20 @@ watch(isDrawerExpanded, () => {
   transition: background-color 300ms ease-in-out;
 
   & .navigations {
+    .active {
+      color: $primary;
+      font-weight: bold;
+    }
+    .active::after {
+      content: '';
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: $primary;
+      margin-right: 2em;
+      transition: width 200ms ease-in-out;
+    }
     float: right;
     & a {
       position: relative;
