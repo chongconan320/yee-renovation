@@ -7,13 +7,15 @@ import AOS from 'aos'
 import { VApp } from 'vuetify/components'
 import { ref, watch } from 'vue'
 import { useDisplay } from 'vuetify'
+import { onBeforeMount } from 'vue'
+import { onBeforeUnmount } from 'vue'
 
 const isDrawerExpanded = ref(false)
 const onToggleDrawer = () => {
   isDrawerExpanded.value = !isDrawerExpanded.value
 }
 const display = useDisplay()
-const scrollTop = ref(0)
+const scrollY = ref(0)
 const navigations = [
   {
     route: '/',
@@ -36,31 +38,33 @@ const appBarRef = ref<HTMLDivElement>()
 
 const route = useRoute()
 
+const onScrollPage = (e: Event) => {
+  if (window.scrollY > window.innerHeight) {
+    appBarRef.value!.className = 'app-bar app-bar--dark'
+    if (window.scrollY > scrollY.value + 30) {
+      appBarRef.value!.className = 'app-bar app-bar--dark app-bar--hide'
+    }
+
+    return
+  }
+  appBarRef.value!.className = 'app-bar'
+}
+const onScrollEnd = () => {
+  scrollY.value = window.scrollY
+}
 onMounted(() => {
   AOS.init({
     once: true,
     easing: 'ease-in-out',
     duration: 500
   })
-  document.addEventListener('scroll', () => {
-    if (window.scrollY > window.innerHeight - 60) {
-      appBarRef.value?.classList.add('app-bar--dark')
-      return
-    }
-    appBarRef.value!.className = 'app-bar'
-  })
+  document.addEventListener('scroll', onScrollPage)
+  document.addEventListener('scrollend', onScrollEnd)
 })
-watch(isDrawerExpanded, () => {
-  const { scrollY } = window
-  if (isDrawerExpanded.value) {
-    scrollTop.value = window.scrollY
-    document.body.style.overflow = 'hidden'
-    document.body.style.height = '100vh'
-    document.body.scrollTo({ top: scrollY })
-    return
-  }
-  document.body.style.overflow = 'visible'
-  document.body.style.height = 'auto'
+
+onBeforeUnmount(() => {
+  document.removeEventListener('scroll', onScrollPage)
+  document.addEventListener('scrollend', onScrollEnd)
 })
 </script>
 
@@ -96,6 +100,9 @@ watch(isDrawerExpanded, () => {
           >
             {{ navigation.text }}
           </v-list-item>
+          <v-list-item class="list-item">
+            <a target="_blank" :href="WHATSAPPS_LINK"> CONTACT US </a>
+          </v-list-item>
         </v-list>
       </v-navigation-drawer>
       <div class="app-bar" ref="appBarRef">
@@ -128,6 +135,10 @@ watch(isDrawerExpanded, () => {
 .logo {
   height: 30px;
 }
+a {
+  color: white;
+  text-decoration: none;
+}
 
 .app-bar {
   display: flex;
@@ -139,7 +150,7 @@ watch(isDrawerExpanded, () => {
   width: 100%;
   height: 64px;
   z-index: 100;
-  transition: background-color 300ms ease-in-out;
+  transition: background-color 150ms ease-in-out, transform 300ms ease-in-out;
 
   & .navigations {
     .active {
@@ -162,8 +173,6 @@ watch(isDrawerExpanded, () => {
       display: inline-block;
       margin-right: 3.5em;
       text-transform: uppercase;
-      color: white;
-      text-decoration: none;
     }
     & a::after {
       content: '';
@@ -189,6 +198,9 @@ watch(isDrawerExpanded, () => {
   -webkit-box-shadow: -9px 18px 26px -14px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -9px 18px 26px -14px rgba(0, 0, 0, 0.75);
   box-shadow: -9px 18px 26px -14px rgba(0, 0, 0, 0.75);
+}
+.app-bar--hide {
+  transform: translateY(-100%);
 }
 
 .drawer {

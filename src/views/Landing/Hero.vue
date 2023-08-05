@@ -13,9 +13,9 @@ const display = useDisplay()
           Build your <span class="landing__slogan--emphasis">dream </span>house
         </h1>
         <p class="landing__description">Get your personalied quote now</p>
-        <div class="landing__button">
+        <a class="landing__button" href="#quote">
           <theme-button class="landing__button"> Get your quotes </theme-button>
-        </div>
+        </a>
       </div>
     </div>
     <v-img :src="LANDING" class="landing__image" />
@@ -67,6 +67,7 @@ const display = useDisplay()
   }
 }
 .landing__button {
+  border-color: $white;
   margin-top: 1em;
   padding: 0 $horizontal_padding;
   & button {

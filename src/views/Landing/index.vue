@@ -19,7 +19,7 @@ import Footer from './Footer.vue'
   <section class="our-location">
     <OurLocation />
   </section>
-  <section class="contact">
+  <section class="contact" id="quote">
     <Contact />
   </section>
   <section class="footer">
