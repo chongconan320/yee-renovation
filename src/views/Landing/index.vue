@@ -5,7 +5,6 @@ import OurWorks from './OurWorks.vue'
 import OurServices from './OurServices.vue'
 import OurLocation from './OurLocation.vue'
 import Contact from './Contact.vue'
-import Footer from './Footer.vue'
 </script>
 <template>
   <HeroSection />
@@ -21,9 +20,6 @@ import Footer from './Footer.vue'
   </section>
   <section class="contact" id="quote">
     <Contact />
-  </section>
-  <section class="footer">
-    <Footer />
   </section>
 </template>
 

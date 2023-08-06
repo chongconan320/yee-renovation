@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { RouterView, useRoute, useRouter, RouterLink } from 'vue-router'
+import { RouterView, useRoute, RouterLink } from 'vue-router'
 import logo from '@/assets/svgs/logo.svg'
 import WHATSAPPS from '@/assets/svgs/whatsapps.svg'
 import { onMounted } from 'vue'
 import AOS from 'aos'
 import { VApp } from 'vuetify/components'
-import { ref, watch } from 'vue'
+import { ref, watchEffect } from 'vue'
 import { useDisplay } from 'vuetify'
 import { onBeforeMount } from 'vue'
 import { onBeforeUnmount } from 'vue'
+import { default as CustomFooter } from '@/views/Landing/Footer.vue'
 
 const isDrawerExpanded = ref(false)
 const onToggleDrawer = () => {
@@ -39,6 +40,10 @@ const appBarRef = ref<HTMLDivElement>()
 const route = useRoute()
 
 const onScrollPage = (e: Event) => {
+  // if (route.path !== '/') {
+  //   appBarRef.value!.className = 'app-bar app-bar--dark'
+  //   return
+  // }
   if (window.scrollY > window.innerHeight) {
     appBarRef.value!.className = 'app-bar app-bar--dark'
     if (window.scrollY > scrollY.value + 30) {
@@ -52,6 +57,7 @@ const onScrollPage = (e: Event) => {
 const onScrollEnd = () => {
   scrollY.value = window.scrollY
 }
+
 onMounted(() => {
   AOS.init({
     once: true,
@@ -98,7 +104,9 @@ onBeforeUnmount(() => {
             :key="navigation.route"
             :class="['list-item', route.path === navigation.route && 'list-item--active']"
           >
-            {{ navigation.text }}
+            <router-link :to="navigation.route">
+              {{ navigation.text }}
+            </router-link>
           </v-list-item>
           <v-list-item class="list-item">
             <a target="_blank" :href="WHATSAPPS_LINK"> CONTACT US </a>
@@ -124,6 +132,7 @@ onBeforeUnmount(() => {
       </div>
       <v-main>
         <router-view />
+        <custom-footer />
       </v-main>
     </v-layout>
   </v-app>
@@ -148,6 +157,7 @@ a {
   padding: 0 $horizontal_padding;
   top: 0;
   width: 100%;
+  margin: auto;
   height: 64px;
   z-index: 100;
   transition: background-color 150ms ease-in-out, transform 300ms ease-in-out;
